@@ -1,0 +1,73 @@
+// Display total distance, average speed, total time
+#include <stdio.h>
+
+int main(void)
+{
+    int laps;
+    float distance, TDistance, AvgsSpeed, speed, time;
+
+    // printf("Enter the number of laps: ");
+    //scanf("%d",&laps);
+
+    // if (laps <= 0){
+    do
+    {
+        if (laps <= 0)
+        {
+            printf("Invalid input, use a positive and non zero number \n");
+        }
+        printf("Enter the number of laps: ");
+        scanf("%d", &laps);
+    } while (laps <= 0);
+
+    do
+    {
+        if (distance <= 0)
+        {
+            printf("Invalid input, use a positive and non zero number \n");
+        }
+        printf("Enter the distance of the each lap: ");
+        scanf("%f", &distance);
+    } while (distance <= 0);
+
+    TDistance = laps * distance; 
+
+    printf("%-10s", "# of Laps");
+    printf("%-20s", "Total Distance");
+    printf("%-20s", "Total Speed");
+    printf("%-20s", "Total Time");
+
+    printf("\n**************************************************************\n");
+
+    for (int i = 1; i <= laps; i++)
+    {
+        printf("\nEnter the speed at lap %d: ", i);
+        scanf("%f", &speed);
+
+        if (speed <= 0)
+        {
+            while (speed <= 0)
+            {
+                printf("Invalid input, use a positive and non zero number \n");
+                printf("\nEnter the speed at lap %d: ", i);
+                scanf("%f", &speed);
+            }
+        }
+
+        time += (distance / speed);
+
+        printf("%-10.0d", i);
+        printf("%-20.2f", distance);
+        printf("%-20.2f", speed);
+        printf("%-20.2f \n", (distance / speed));
+    }
+
+    AvgsSpeed = TDistance / time;
+
+    printf("\n%-10s", "Total:");
+    printf("%-20.2f", TDistance);
+    printf("%-20.2f", AvgsSpeed);
+    printf("%-20.2f", time);
+
+    return 0;
+}
